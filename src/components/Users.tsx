@@ -1,30 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-
-import { reqResAPI } from '../api';
-import { ReqResAPI, User } from '../interfaces';
+import { useUsers } from '../hooks';
+import { User } from '../interfaces';
 
 const Users = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const pageRef = useRef(1);
-
-  const loadUsers = async () => {
-    try {
-      const res = await reqResAPI.get<ReqResAPI>('/users', {
-        params: { page: pageRef.current },
-      });
-
-      if (res.data.data.length > 0) {
-        setUsers(res.data.data);
-        pageRef.current++;
-      } else alert('No more records');
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    loadUsers();
-  }, []);
+  const { users, loadUsers } = useUsers();
 
   const renderItem = ({
     avatar,
