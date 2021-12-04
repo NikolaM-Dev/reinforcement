@@ -2,7 +2,7 @@ import { useUsers } from '../hooks';
 import { User } from '../interfaces';
 
 const Users = () => {
-  const { users, loadUsers } = useUsers();
+  const { users, previousPage, nextPage } = useUsers();
 
   const renderItem = ({
     avatar,
@@ -41,8 +41,11 @@ const Users = () => {
         </thead>
         <tbody>{users.map(renderItem)}</tbody>
       </table>
-
-      <button className="btn btn-primary" onClick={loadUsers}>
+      <button className="btn btn-primary" onClick={previousPage}>
+        Previous
+      </button>
+      &nbsp;
+      <button className="btn btn-primary" onClick={nextPage}>
         Next
       </button>
     </>
