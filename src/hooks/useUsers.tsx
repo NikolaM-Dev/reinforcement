@@ -13,18 +13,31 @@ export const useUsers = () => {
         params: { page: pageRef.current },
       });
 
-      if (res.data.data.length > 0) {
-        setUsers(res.data.data);
-        pageRef.current++;
-      } else alert('No more records');
+      if (res.data.data.length > 0) setUsers(res.data.data);
+      else {
+        previousPage();
+        alert('No more records');
+      }
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const nextPage = () => {
+    pageRef.current++;
+    loadUsers();
+  };
+
+  const previousPage = () => {
+    if (pageRef.current === 1) return;
+
+    pageRef.current--;
+    loadUsers();
   };
 
   useEffect(() => {
     loadUsers();
   }, []);
 
-  return { users, loadUsers };
+  return { users, nextPage, previousPage };
 };
