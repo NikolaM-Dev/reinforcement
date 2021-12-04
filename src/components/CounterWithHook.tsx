@@ -1,4 +1,4 @@
-import useCounter from '../hooks/useCounter';
+import { useCounter } from '../hooks';
 
 const CounterWithHook = () => {
   const { value, handleAccumulate } = useCounter(100);
