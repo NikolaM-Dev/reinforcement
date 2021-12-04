@@ -1,5 +1,13 @@
+import BasicTypes from './typescript/BasicTypes';
+
 const App = () => {
-  return <h1>Introduccion a typescript con React!</h1>;
+  return (
+    <div className="mt-2">
+      <h1>Introduccion a typescript con React!</h1>
+      <hr />
+      <BasicTypes />
+    </div>
+  );
 };
 
 export default App;
