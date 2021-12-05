@@ -1,17 +1,10 @@
-import { useState } from 'react';
-
+import { useForm } from '../hooks/useForm';
 const Forms = () => {
-  const [form, setForm] = useState({
+  const { form, email, password, age, handleChange } = useForm({
     email: 'bob@bob.com',
     password: 'bob123',
+    age: 21,
   });
-
-  const handleChange = (value: string, field: string) => {
-    setForm({
-      ...form,
-      [field]: value,
-    });
-  };
 
   return (
     <>
@@ -21,15 +14,22 @@ const Forms = () => {
           className="form-control mb-2"
           placeholder="Email"
           type="text"
-          value={form.email}
+          value={email}
           onChange={({ target }) => handleChange(target.value, 'email')}
         />
         <input
           className="form-control mb-2"
           placeholder="Password"
           type="password"
-          value={form.password}
+          value={password}
           onChange={({ target }) => handleChange(target.value, 'password')}
+        />
+        <input
+          className="form-control mb-2"
+          placeholder="Age"
+          type="number"
+          value={age}
+          onChange={({ target }) => handleChange(target.value, 'age')}
         />
       </form>
 
